@@ -26,8 +26,10 @@ public class Ladder {
      * @param player
      */
     public void escalate(Player player){
-        System.out.println("Ladder : " + this + " escalated up the player : " + player);
-        player.move(end);
+        if(player.getLocation()==start) {
+            System.out.println("Ladder : " + this + " escalated up the player : " + player);
+            player.move(end);
+        }
     }
 
     @Override

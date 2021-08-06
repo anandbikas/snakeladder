@@ -26,8 +26,10 @@ public class Snake {
      * @param player
      */
     public void devour(Player player){
-        System.out.println("Snake : " + this + " devoured down the player : " + player);
-        player.move(tail);
+        if(player.getLocation()==head) {
+            System.out.println("Snake : " + this + " devoured down the player : " + player);
+            player.move(tail);
+        }
     }
 
     @Override

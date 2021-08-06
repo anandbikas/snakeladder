@@ -47,6 +47,14 @@ public class Board {
 
     /**
      *
+     * @return
+     */
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    /**
+     *
      * @param player
      * @param score
      * @return Return winning status
@@ -60,19 +68,16 @@ public class Board {
             return false;
         }
 
+        player.move(newLocation);
+
         //Snake-Ladder Operation
         if(snakesMap.containsKey(newLocation)){
             snakesMap.get(newLocation).devour(player);
 
         } else if(laddersMap.containsKey(newLocation)) {
             laddersMap.get(newLocation).escalate(player);
-
-        } else {
-            player.move(newLocation);
-            return player.getLocation()==boardSize;
         }
-
-        return false;
+        return player.getLocation()==boardSize;
     }
 
     public void display(){

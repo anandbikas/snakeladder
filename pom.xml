@@ -11,7 +11,11 @@
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
+        <junit.version>4.12</junit.version>
+        <org.jmockit.version>1.36</org.jmockit.version>
         <org.testng.version>6.14.3</org.testng.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,6 +40,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${org.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <version>${org.jmockit.version}</version>
             <scope>test</scope>
         </dependency>
 

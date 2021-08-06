@@ -63,7 +63,7 @@ public class SnakeLadder {
             Player player = players.remove();
 
             System.out.printf("%nYour turn %s...",player);
-            if(!auto) scanner.nextLine();
+            if(!auto) scanner.nextLine(); else System.out.println();
 
             int diceRoll = dice.roll();
 
@@ -103,7 +103,7 @@ public class SnakeLadder {
         System.out.println();
 
         List<String> playerNames = Arrays.asList("Bikas", "Brian", "Alex", "Sam");
-        SnakeLadder snakeLadderGame = new SnakeLadder(playerNames,true);
+        SnakeLadder snakeLadderGame = new SnakeLadder(playerNames);
 
         snakeLadderGame.play(true);
         snakeLadderGame.declareWinners();
