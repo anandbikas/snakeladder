@@ -3,11 +3,13 @@ package com.anand.snakeladder.models;
 import java.util.Random;
 
 /**
- *
+ * Dice
  */
 public class Dice {
     public static int DEFAULT_FACES=6;
-    private int faces;
+    protected int faces;
+
+    protected Random random = new Random();
 
     public Dice(){
         this(DEFAULT_FACES);
@@ -18,6 +20,9 @@ public class Dice {
     }
 
     public int roll(){
-        return new Random().nextInt(faces)+1;
+        int diceRoll = random.nextInt(faces)+1;
+        System.out.println("Dice rolled to : " + diceRoll);
+
+        return diceRoll;
     }
 }

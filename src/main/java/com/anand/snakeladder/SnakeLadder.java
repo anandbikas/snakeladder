@@ -1,6 +1,7 @@
 package com.anand.snakeladder;
 
 import com.anand.snakeladder.models.Board;
+import com.anand.snakeladder.models.CrookedDice;
 import com.anand.snakeladder.models.Dice;
 import com.anand.snakeladder.models.Player;
 
@@ -22,9 +23,18 @@ public class SnakeLadder {
      * @param playerNames
      */
     public SnakeLadder(List<String> playerNames) {
+        this(playerNames, false);
+    }
+
+    /**
+     *
+     * @param playerNames
+     * @param crookedDice
+     */
+    public SnakeLadder(List<String> playerNames, boolean crookedDice) {
 
         board = new Board();
-        dice = new Dice();
+        dice = crookedDice ? new CrookedDice() : new Dice();
         players = new LinkedList<>();
         finishers = new ArrayList<>();
 

@@ -6,24 +6,34 @@ import com.anand.snakeladder.factories.SnakeFactory;
 import java.util.Map;
 
 /**
- *
+ * Snake Ladder Board
  */
 public class Board {
     public static int DEFAULT_CELLS=100;
+    public static int DEFAULT_SNAKES=10;
+    public static int DEFAULT_LADDERS=10;
 
     private int boardSize;
     private Map<Integer, Snake> snakesMap;
     private Map<Integer, Ladder> laddersMap;
 
+    /**
+     *
+     */
     public Board() {
-        this(DEFAULT_CELLS);
+        this(DEFAULT_CELLS, DEFAULT_SNAKES,DEFAULT_LADDERS);
     }
 
-    public Board(int cells) {
+    /**
+     *
+     * @param cells
+     * @param snakeCount
+     * @param ladderCount
+     */
+    public Board(int cells, int snakeCount, int ladderCount) {
         this.boardSize = cells;
-
-        snakesMap = SnakeFactory.getRandomSnakesMap(boardSize);
-        laddersMap = LadderFactory.getRandomLaddersMap(boardSize);
+        snakesMap = SnakeFactory.getRandomSnakesMap(boardSize, snakeCount, laddersMap);
+        laddersMap = LadderFactory.getRandomLaddersMap(boardSize, ladderCount, snakesMap);
     }
 
     /**
@@ -36,19 +46,24 @@ public class Board {
 
         int newLocation = player.getLocation()+score;
 
+        if(newLocation>boardSize) {
+            System.out.printf("Player %s : Move out of board rejected!%n", player);
+            return false;
+        }
+
         //Snake-Ladder Operation
         if(snakesMap.containsKey(newLocation)){
-            newLocation = snakesMap.get(newLocation).operate();
+            snakesMap.get(newLocation).devour(player);
+
         } else if(laddersMap.containsKey(newLocation)) {
-            newLocation = laddersMap.get(newLocation).escalate();
+            laddersMap.get(newLocation).escalate(player);
+
+        } else {
+            player.move(newLocation);
+            return player.getLocation()==boardSize;
         }
 
-        if(newLocation>boardSize){
-            newLocation = player.getLocation();
-        }
-
-        player.move(newLocation);
-        return newLocation==boardSize;
+        return false;
     }
 
     public void display(){

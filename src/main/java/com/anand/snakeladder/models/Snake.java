@@ -1,13 +1,18 @@
 package com.anand.snakeladder.models;
 
 /**
- *
+ * Snake
  */
 public class Snake {
 
     private int head;
     private int tail;
 
+    /**
+     *
+     * @param head
+     * @param tail
+     */
     public Snake(int head, int tail) {
         if(tail>=head){
             throw new RuntimeException("Snake tail should be less than head");
@@ -16,8 +21,13 @@ public class Snake {
         this.tail = tail;
     }
 
-    public int operate(){
-        return tail;
+    /**
+     *
+     * @param player
+     */
+    public void devour(Player player){
+        System.out.println("Snake : " + this + " devoured down the player : " + player);
+        player.move(tail);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.anand.snakeladder.models;
 
 /**
- *
+ * Move
  */
 public class Move {
 
