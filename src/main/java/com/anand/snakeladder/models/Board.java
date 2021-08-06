@@ -21,7 +21,15 @@ public class Board {
      *
      */
     public Board() {
-        this(DEFAULT_CELLS, DEFAULT_SNAKES,DEFAULT_LADDERS);
+        this(DEFAULT_CELLS, DEFAULT_SNAKES,DEFAULT_LADDERS, null);
+    }
+
+    /**
+     *
+     * @param dice
+     */
+    public Board(Dice dice) {
+        this(DEFAULT_CELLS, DEFAULT_SNAKES,DEFAULT_LADDERS, dice);
     }
 
     /**
@@ -29,11 +37,12 @@ public class Board {
      * @param cells
      * @param snakeCount
      * @param ladderCount
+     * @param dice
      */
-    public Board(int cells, int snakeCount, int ladderCount) {
+    public Board(int cells, int snakeCount, int ladderCount, Dice dice) {
         this.boardSize = cells;
-        snakesMap = SnakeFactory.getRandomSnakesMap(boardSize, snakeCount, laddersMap);
-        laddersMap = LadderFactory.getRandomLaddersMap(boardSize, ladderCount, snakesMap);
+        snakesMap = SnakeFactory.getRandomSnakesMap(boardSize, snakeCount, laddersMap, dice);
+        laddersMap = LadderFactory.getRandomLaddersMap(boardSize, ladderCount, snakesMap, dice);
     }
 
     /**
